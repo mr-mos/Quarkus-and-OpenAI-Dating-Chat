@@ -60,3 +60,11 @@ If you want to learn more about building native executables, please consult http
 Easily start your Reactive RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+## Deployment in Amazon Elastic Kubernetes Service (EKS)
+
+Done via a AWS Cloud9 instance
+
+Doku:
+ * https://aws.amazon.com/de/blogs/containers/how-to-deploy-your-quarkus-application-to-amazon-eks/
+ * https://github.com/aws-samples/aws-eks-quarkus-example/blob/main/README.md  (Cloud9)
