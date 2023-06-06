@@ -65,6 +65,12 @@ Easily start your Reactive RESTful Web Services
 
 Done via a AWS Cloud9 instance
 
-Doku:
+Documentation:
  * https://aws.amazon.com/de/blogs/containers/how-to-deploy-your-quarkus-application-to-amazon-eks/
  * https://github.com/aws-samples/aws-eks-quarkus-example/blob/main/README.md  (Cloud9)
+
+## Deployment on Render using GitHub Actions and Docker Hub 
+
+Tutorial:
+ * https://www.morling.dev/blog/running-quarkus-native-app-on-render/
+ * Source: https://github.com/gunnarmorling/quarkus-on-render
