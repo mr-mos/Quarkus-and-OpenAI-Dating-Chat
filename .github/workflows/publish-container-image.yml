@@ -46,7 +46,7 @@ jobs:
           context: .
           push: true
           file: src/main/docker/Dockerfile.native
-          tags: gunnarmorling/quarkus-on-render:latest
+          tags: mrmos/quarkus-on-render:latest
       - name: Deploy
         uses: fjogeleit/http-request-action@v1
         with:
