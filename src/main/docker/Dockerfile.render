@@ -2,4 +2,6 @@
 # This Dockerfile is used with render.com as they don't allow to deploy images straight from a registry
 #
 ###
-FROM gunnarmorling/quarkus-on-render:latest
+
+#FROM gunnarmorling/quarkus-on-render:latest
+FROM mrmos/hello_nginx:latest

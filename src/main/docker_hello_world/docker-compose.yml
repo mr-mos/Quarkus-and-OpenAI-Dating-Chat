@@ -1,0 +1,12 @@
+# Make sure you are in default context:  "docker context ls"   -->  "docker context use default"
+# Run docker: docker compose up
+# http://localhost/
+
+version: "3.7"
+
+services:
+
+  hello_nginx:
+    image: hello_nginx:latest
+    ports:
+      - "80:80"
