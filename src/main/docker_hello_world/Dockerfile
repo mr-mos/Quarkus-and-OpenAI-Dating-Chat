@@ -10,9 +10,9 @@
 # Check application at:  http://localhost/
 #
 # Push it to Docker Hub
-#   docker tag hello_nginx mrmos/hello_nginx:01
+#   docker tag hello_nginx mrmos/hello_nginx:latest
 #   docker login
-#   docker push mrmos/hello_nginx:01
+#   docker push mrmos/hello_nginx:latest
 #  --> check if it is available: https://hub.docker.com/u/mrmos
 #
 
