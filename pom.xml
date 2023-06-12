@@ -60,6 +60,7 @@
                             <goal>build</goal>
                             <goal>generate-code</goal>
                             <goal>generate-code-tests</goal>
+                            <goal>dev</goal>
                         </goals>
                     </execution>
                 </executions>
