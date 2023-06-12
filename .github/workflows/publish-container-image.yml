@@ -27,7 +27,7 @@ jobs:
       - name: 'Grant executable permissions'
         run: chmod +x mvnw
       - name: 'Build'
-        run: ./mvnw -B --file pom.xml verify -Pnative -Dquarkus.native.additional-build-args=-H:-UseContainerSupport
+        run: ./mvnw -B --file pom.xml verify -Pnative -Dquarkus.native.additional-build-args=-H:-UseContainerSupport -Dquarkus.profile=dev
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
