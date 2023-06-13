@@ -1,4 +1,4 @@
-package mos.quarkus.play;
+package mos.quarkus.play.service;
 
 import io.quarkus.runtime.configuration.ConfigUtils;
 import jakarta.enterprise.context.ApplicationScoped;
