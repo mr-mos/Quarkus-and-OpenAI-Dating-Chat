@@ -1,0 +1,84 @@
+/* CSS Layout */
+
+/* Allgemeine Stile */
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #000033; /* Dunkelblau */
+	color: #fff;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+/* Header-Bereich */
+header {
+	width: 100%;
+	padding-top: 20px;
+	background-color: #000033;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	width: 100px; /* Ändern Sie die Größe entsprechend Ihrem Logo */
+}
+
+.logo img {
+	width: 100%;
+	height: auto;
+}
+
+#quarkus-logo-svg {
+	width: 300px;
+	height: 40px;
+	padding-top: 1rem;
+	margin: 10px;
+}
+
+header h1 {
+	color: #fff;
+	font-size: 2em;
+}
+
+/* Navigationsbereich */
+nav {
+	background-color: #000033;
+	color: #fff;
+	padding-bottom: 15px;
+}
+
+nav ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	justify-content: space-around;
+}
+
+nav ul li a {
+	color: #fff;
+	text-decoration: none;
+}
+
+/* Hauptinhalt */
+main {
+	background-color: #fff;
+	color: #000033;
+	padding: 20px;
+	min-height: 70vh;
+}
+
+/* Fußzeilenbereich */
+footer {
+	background-color: #000033;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
