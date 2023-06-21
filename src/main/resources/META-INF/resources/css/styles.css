@@ -9,16 +9,42 @@ body {
 	color: #fff;
 }
 
+
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
 }
 
+
+ul {
+	list-style-type: none; /* Entfernt die standardmäßigen Listenpunkte */
+	padding-left: 0;
+}
+
+li {
+	position: relative; /* Erlaubt das Positionieren des :before Pseudo-Elementes relativ zum li-Element */
+	padding-left: 25px; /* Sorgt für den nötigen Platz für das SVG-Logo */
+	margin-bottom: 10px;
+}
+
+li:before {
+	content: ""; /* Kein Inhalt im Pseudo-Element */
+	position: absolute; /* Positioniert das Pseudo-Element absolut relativ zum li-Element */
+	width: 25px; /* Breite des SVG-Logos */
+	height: 25px; /* Höhe des SVG-Logos */
+	left: 0; /* Positioniert das SVG-Logo am Anfang des li-Elementes */
+	top: 0; /* Positioniert das obere Ende des :before Elementes am oberen Rand des li-Elementes */
+	bottom: 0; /* Positioniert das untere Ende des :before Elementes am unteren Rand des li-Elementes */
+	margin: auto; /* Zentriert das :before Element vertikal */
+	background: url('../img/play-logo.svg') no-repeat; /* Setzt das SVG-Logo als Hintergrundbild */
+	background-size: contain; /* Stellt sicher, dass das gesamte SVG-Logo sichtbar ist */
+}
+
+
 /* Header-Bereich */
 header {
 	width: 100%;
-	padding-top: 20px;
 	background-color: #000033;
 	display: flex;
 	align-items: center;
@@ -29,14 +55,13 @@ header {
 }
 
 .logo img {
-	width: 100%;
+	width: 80%;
 	height: auto;
 }
 
 #quarkus-logo-svg {
-	width: 300px;
+	width: 100px;
 	height: 40px;
-	padding-top: 1rem;
 	margin: 10px;
 }
 
@@ -49,7 +74,7 @@ header h1 {
 nav {
 	background-color: #000033;
 	color: #fff;
-	padding-bottom: 15px;
+	padding-bottom: 5px;
 }
 
 nav ul {
@@ -57,6 +82,10 @@ nav ul {
 	padding: 0;
 	display: flex;
 	justify-content: space-around;
+}
+
+nav ul li {
+	margin-bottom: 0;
 }
 
 nav ul li a {
