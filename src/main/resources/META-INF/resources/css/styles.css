@@ -3,6 +3,9 @@
 /* Allgemeine Stile */
 body {
 	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	margin: 0;
 	padding: 0;
 	background-color: #000033; /* Dunkelblau */
@@ -46,6 +49,7 @@ li:before {
 header {
 	width: 100%;
 	background-color: #000033;
+	height: 50px; /* beispielhafte feste Höhe */
 	display: flex;
 	align-items: center;
 }
@@ -98,7 +102,7 @@ main {
 	background-color: #fff;
 	color: #000033;
 	padding: 20px;
-	min-height: 78vh;
+	flex-grow: 1; /* Damit nimmt main den verfügbaren Platz ein */
 }
 
 /* Fußzeilenbereich */
@@ -107,7 +111,6 @@ footer {
 	color: #fff;
 	padding: 10px;
 	text-align: center;
-	position: fixed;
-	bottom: 0;
+	height: 30px; /* beispielhafte feste Höhe */
 	width: 100%;
 }
