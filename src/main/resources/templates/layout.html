@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{#insert title}Play{/}</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/img/play-logo.svg"/>
+        </div>
+        <h1>{#insert title}Have fun{/}</h1>
+        <img src="/img/quarkus-logo.svg" id="quarkus-logo-svg"/>
+        <img src="/img/ChatGPT.png" style="width:50px;"/>
+    </header>
+    <nav>
+        <ul>
+            {#each navigation}
+                <li> <a href="{it.value.raw}">{it.key.raw}</a> </li>
+            {/each}
+        </ul>
+    </nav>
+    <main>
+
+        {#insert}No body!{/}
+
+    </main>
+    {#include footer /}
+</body>
+</html>
+

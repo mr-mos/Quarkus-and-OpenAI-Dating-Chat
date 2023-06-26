@@ -9,22 +9,22 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import mos.quarkus.play.service.NavigationService;
-import org.apache.commons.collections4.MapUtils;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-@Path("/")
-public class StartController {
+@Path("")
+public class SummarizerController {
 
 	@Inject
 	NavigationService navigationService;
 
 	@Inject
-	Template start;
+	Template summarizeForm;
+
 
 	@GET
-	public TemplateInstance home() {
-		return start.data("navigation", navigationService.getNavigation());
+	@Produces(MediaType.TEXT_HTML)
+	@Path("/summarizer")
+	public TemplateInstance form(@QueryParam("text") String text) {
+		return summarizeForm.data("defaultText", text, "navigation", navigationService.getNavigation());
 	}
+
 }

@@ -18,7 +18,7 @@ public class ExampleService {
 
 
 	public String generateText() {
-		return "Hello World! Quarkus is running. Environment: \n\n" +
+		return "Hello World! Quarkus is running. \n\n" +
 				"Profile: " + ConfigUtils.getProfiles() + "\n" +
 				"Application name: " + applicationName + "\n" +
 				"Application version: " + applicationVersion + "\n" +
