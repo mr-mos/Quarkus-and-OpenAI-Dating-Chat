@@ -17,7 +17,7 @@
     <ul>
         {#each navigation}
             <li>
-            <a href="{it.value}" style="{#if (it.value eq inject:vertxRequest.uri())}color:yellow{/if}">
+            <a href="{it.value}" style="{it.value.equals(inject:vertxRequest.uri()) ? 'color:yellow' : ''}">
             {it.key.raw}
             </a>
             </li>
