@@ -25,6 +25,6 @@ public class StartController {
 
 	@GET
 	public TemplateInstance home() {
-		return start.data("navigation", navigationService.getNavigation());
+		return start.data("navigation", navigationService.getNavigation(), "testData", Map.of("name","Mr. Mos"));
 	}
 }
