@@ -107,9 +107,9 @@ main {
 
 /* Fußzeilenbereich */
 footer {
-	background-color: #000033;
+	background-color: #000011;
 	color: #fff;
 	padding: 10px;
 	text-align: center;
-	height: 30px; /* beispielhafte feste Höhe */
+	height: 18px; /* beispielhafte feste Höhe */
 }
