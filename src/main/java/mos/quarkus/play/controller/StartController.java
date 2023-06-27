@@ -5,13 +5,8 @@ import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.MediaType;
 import mos.quarkus.play.service.NavigationService;
-import org.apache.commons.collections4.MapUtils;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Path("/")
