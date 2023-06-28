@@ -11,20 +11,20 @@ import jakarta.ws.rs.core.MediaType;
 import mos.quarkus.play.service.NavigationService;
 
 @Path("")
-public class SummarizerController {
+public class OpenAIController {
 
 	@Inject
 	NavigationService navigationService;
 
 	@Inject
-	Template summarizeForm;
+	Template openAIStart;
 
 
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	@Path("/summarizer")
+	@Path("/openAIStart")
 	public TemplateInstance form(@QueryParam("text") String text) {
-		return summarizeForm.data("defaultText", text, "navigation", navigationService.getNavigation());
+		return openAIStart.data("defaultText", text, "navigation", navigationService.getNavigation());
 	}
 
 }

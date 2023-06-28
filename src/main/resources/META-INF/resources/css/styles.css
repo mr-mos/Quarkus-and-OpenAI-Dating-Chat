@@ -49,7 +49,7 @@ li:before {
 header {
 	width: 100%;
 	background-color: #000033;
-	height: 50px; /* beispielhafte feste Höhe */
+	height: 52px; /* beispielhafte feste Höhe */
 	display: flex;
 	align-items: center;
 }
