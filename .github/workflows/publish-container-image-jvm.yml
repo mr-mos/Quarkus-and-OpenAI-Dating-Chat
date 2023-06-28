@@ -2,9 +2,9 @@ name: ci-dockerhub-render-jvm
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'master'
+#  push:
+#    branches:
+#      - 'master'
 
 jobs:
   docker:
