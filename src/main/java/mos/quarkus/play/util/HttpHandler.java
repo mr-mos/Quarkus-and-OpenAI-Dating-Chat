@@ -10,29 +10,49 @@ import jakarta.inject.Inject;
 @RequestScoped
 public class HttpHandler {
 
+	public static long DAY_IN_SECONDS = 24 * 60 * 60;     // check also cache invalidation:  quarkus.cache.caffeine.expire-after-access
+	public static String SESSION_COOKIE_NAME = "USER_SESSION_PLAY";
+
 	@Inject
 	HttpServerRequest request;
 
-	public void setCookie(String key, String value) {
+	/**
+	 * @param maxAge  in seconds
+	 */
+	public void setCookie(String key, String value, Long maxAge) {
 		HttpServerResponse response = request.response();
-		if (!response.headWritten())
-			response.addCookie(
-					Cookie.cookie(key, value)
-							.setPath("/")
-							.setHttpOnly(true)
-							.setSameSite(CookieSameSite.NONE)
-							.setSecure(request.isSSL()));
+		if (!response.headWritten()) {
+			Cookie cookie = Cookie.cookie(key, value)
+					.setPath("/")
+					.setHttpOnly(true)
+					.setSameSite(CookieSameSite.NONE)
+					.setSecure(request.isSSL());
+			if (maxAge != null) {
+				cookie.setMaxAge(maxAge);
+			}
+			response.addCookie(cookie);
+		}
+	}
+
+	/**
+	 *  No-Expire-Date: Cookie should be deleted if browser is closed (in theory)
+	 */
+	public void setCookie(String key, String value) {
+		setCookie(key, value, null);
+	}
+
+	public String getCookieValue(String key) {
+		Cookie cookie = request.getCookie(key);
+		if (cookie != null) {
+			return cookie.getValue();
+		}
+		return null;
 	}
 
 	public void removeCookie(String key) {
 		// request.response().removeCookies(key);
 		// request.getCookie(key).setMaxAge(-10000);
-		HttpServerResponse response = request.response();
-		response.addCookie(
-				Cookie.cookie(key, "")
-						.setPath("/")
-						.setMaxAge(0)
-		);
+		setCookie(key, "", 0L);
 	}
 
 }

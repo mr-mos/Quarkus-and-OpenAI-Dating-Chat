@@ -40,6 +40,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-reactive-qute</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-cache</artifactId>
+        </dependency>
+<!--        Servlet API  incl. Session-Handling-->
 <!--        <dependency>-->
 <!--            <groupId>io.quarkus</groupId>-->
 <!--            <artifactId>quarkus-undertow</artifactId>-->
