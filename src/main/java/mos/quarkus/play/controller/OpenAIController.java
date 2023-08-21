@@ -92,7 +92,7 @@ public class OpenAIController {
 			redirect("/openAI/openAIStart");
 		}
 		Log.warn("Validation error: " + errorMessages);
-		return apiKeyTemplate.data("key", key, "apiKeyErros", String.join(" && ", errorMessages));
+		return apiKeyTemplate.data("key", key, "apiKeyErros", String.join(" AND ", errorMessages));
 	}
 
 
