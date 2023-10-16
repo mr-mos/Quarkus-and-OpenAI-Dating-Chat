@@ -18,11 +18,12 @@ import mos.quarkus.play.util.HttpHandler;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import static mos.quarkus.play.service.CachingService.USER_SESSION_OPENAPI_KEY;
+import static mos.quarkus.play.util.HttpHandler.DAY_IN_SECONDS;
 import static mos.quarkus.play.util.HttpHandler.SESSION_COOKIE_NAME;
 
 @Path("/openAI")
@@ -55,9 +56,9 @@ public class OpenAIController {
 		// Log.info(cachingService.getUserSessionValue("123", "test"));
 		// httpHandler.setCookie("myTest", "1234", HttpHandler.DAY_IN_SECONDS);
 		// httpHandler.removeCookie("myTest");
-		String apiKey = getApiKeyTemplate();
+		String apiKey = getApiKey();
 		if (apiKey == null) {
-			redirect("/openAI/apiKey");
+			redirect("/openAI/apiKey");   // throws a RedirectException
 		}
 		return openAIStartTemplate.data("apiKey", "todo");
 	}
@@ -89,6 +90,7 @@ public class OpenAIController {
 		List<String> errorMessages = validate(apiKey);
 		if (errorMessages == null) {
 			Log.info("Store api key!");
+			set(apiKey.getValue());
 			redirect("/openAI/openAIStart");
 		}
 		Log.warn("Validation error: " + errorMessages);
@@ -98,10 +100,10 @@ public class OpenAIController {
 
 	@GET
 	@Path("/set")
-	public String set() {
-		// httpHandler.setCookie("myTest", "1234", DAY_IN_SECONDS);
-		cachingService.setUserSessionValue("123", "test", "hello mos " + new Date());
-		return "ok";
+	public void set(String openAiKey) {
+		String sessionId = UUID.randomUUID().toString();
+		httpHandler.setCookie(SESSION_COOKIE_NAME, sessionId, DAY_IN_SECONDS);
+		cachingService.setUserSessionValue(sessionId, USER_SESSION_OPENAPI_KEY, openAiKey);
 	}
 
 
@@ -121,7 +123,7 @@ public class OpenAIController {
 		}
 	}
 
-	private String getApiKeyTemplate() {
+	private String getApiKey() {
 		String sessionID = httpHandler.getCookieValue(SESSION_COOKIE_NAME);
 		if (sessionID == null) {
 			return null;

@@ -25,7 +25,7 @@ public class CachingService {
 	}
 
 	public void setUserSessionValue(String sessionId, String key, String value) {
-		Log.info("Setting key '"+key+"' for user-session: " + sessionId);
+		Log.info("Setting key '"+key+"' for user-session: " + sessionId/* + "with value: "+value*/);
 		Map<String, String> sessionMap = readWriteUserSessionValue(sessionId, null);
 		invalidateUserSession(sessionId);
 		if (sessionMap == null) {
