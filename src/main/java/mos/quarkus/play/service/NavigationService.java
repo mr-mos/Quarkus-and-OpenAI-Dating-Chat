@@ -17,7 +17,7 @@ public class NavigationService {
 						{"Home", "/"},
 						{"Hello World", "/hello"},
 						{"<b>ChatGPT &amp; OpenAI</b>", "/openAI/openAIStart"},
-						{"Quarkus Info", "quarkus_default.html"}
+						{"Quarkus Info", "/quarkus_default.html"}
 				}
 		);
 	}
