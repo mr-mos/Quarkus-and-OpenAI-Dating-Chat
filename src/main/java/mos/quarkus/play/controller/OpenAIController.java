@@ -90,24 +90,22 @@ public class OpenAIController {
 		List<String> errorMessages = validate(apiKey);
 		if (errorMessages == null) {
 			Log.info("Store api key!");
-			set(apiKey.getValue());
+			setKey(apiKey.getValue());
 			redirect("/openAI/openAIStart");
 		}
 		Log.warn("Validation error: " + errorMessages);
-		return apiKeyTemplate.data("key", key, "apiKeyErros", String.join(" AND ", errorMessages));
-	}
-
-
-	@GET
-	@Path("/set")
-	public void set(String openAiKey) {
-		String sessionId = UUID.randomUUID().toString();
-		httpHandler.setCookie(SESSION_COOKIE_NAME, sessionId, DAY_IN_SECONDS);
-		cachingService.setUserSessionValue(sessionId, USER_SESSION_OPENAPI_KEY, openAiKey);
+		return apiKeyTemplate.data("key", key, "apiKeyErrors", String.join(" AND ", errorMessages));
 	}
 
 
 	//////
+
+
+	private void setKey(String openAiKey) {
+		String sessionId = UUID.randomUUID().toString();
+		httpHandler.setCookie(SESSION_COOKIE_NAME, sessionId, DAY_IN_SECONDS);
+		cachingService.setUserSessionValue(sessionId, USER_SESSION_OPENAPI_KEY, openAiKey);
+	}
 
 	private List<String> validate(Object bean) {
 		Set<ConstraintViolation<Object>> violations = validator.validate(bean);

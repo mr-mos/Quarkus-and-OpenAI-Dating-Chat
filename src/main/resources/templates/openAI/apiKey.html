@@ -1,7 +1,7 @@
 {#include layout}
     {#title}API-Key -- Use OpenAI and ChatGPT{/title}
     <div style="margin-top:20px;">
-        We need your OpenAI API key for doing the work. <br/><br/>
+        We need your OpenAI API key for doing the work. Afterward ChatGPT will help you to chat with a dating-partner. &#128525;  <br/><br/>
         <strong>Please enter your API key here:</strong>
 
         <form method="POST" action="apiKey" style="margin-top: 10px;" enctype="application/x-www-form-urlencoded">
@@ -9,9 +9,9 @@
             <input type="submit" value="Submit Key" style="border: 1px solid black;font-size: 20px;padding:5px;min-width:200px;" />
         </form>
 
-        {#if apiKeyErros??}
+        {#if apiKeyErrors??}
             <div style="color:red;margin-top:5px;">
-               {apiKeyErros}
+               {apiKeyErrors}
             </div>
         {/if}
 

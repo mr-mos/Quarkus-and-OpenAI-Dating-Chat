@@ -12,7 +12,7 @@ import java.util.Map;
 public class NavigationService {
 
 	public Map<String, String> getNavigation() {
-		return MapUtils.putAll(new LinkedHashMap(),
+		return MapUtils.putAll(new LinkedHashMap<>(),
 				new String[][]{
 						{"Home", "/"},
 						{"Hello World", "/hello"},
