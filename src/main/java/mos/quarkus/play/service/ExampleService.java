@@ -22,6 +22,7 @@ public class ExampleService {
 
 	public String generateText() {
 		return "Hello World! Quarkus is running. \n\n" +
+				"Java Version: " +  System.getProperty("java.version") + "\n" +
 				"Quarkus Version: " + quarkusFrameworkVersion + "\n" +
 				"Profile: " + ConfigUtils.getProfiles() + "\n" +
 				"Application name: " + applicationName + "\n" +
