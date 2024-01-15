@@ -60,9 +60,17 @@ public class OpenAIController {
 		if (apiKey == null) {
 			redirect("/openAI/apiKey");   // throws a RedirectException
 		}
-		return openAIStartTemplate.data("apiKey", "todo");
+		return openAIStartTemplate.data("apiKey", halfLength(apiKey));
 	}
 
+
+	private String halfLength(String org) {
+		int apiKeyLength = org.length();
+		int substringLength = apiKeyLength / 2;
+		int startCutPosition = substringLength / 2;
+		int endCutPosition = startCutPosition + substringLength;
+		return org.substring(0, startCutPosition) + " ... " + org.substring(endCutPosition);
+	}
 
 	@Path("/apiKey")
 	@GET

@@ -105,6 +105,23 @@ main {
 	flex-grow: 1; /* Damit nimmt main den verfügbaren Platz ein */
 }
 
+.flex-container {
+	display: flex;
+	flex-direction: column; /* Stacks children vertically */
+}
+
+.flexUpperRight {
+	text-align: right;
+	font-size: small;
+	color: #888;
+}
+
+.flexFull {
+	width: 100%; /* Sets the width to full container width */
+	/* Additional styles like margin, padding, etc. can be added here */
+}
+
+
 /* Fußzeilenbereich */
 footer {
 	background-color: #000011;
