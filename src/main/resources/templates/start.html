@@ -8,28 +8,28 @@
         {/each}
     </ul>
 
-    {!<div style="margin-top:30px;">!}
-{!!}
-    {!<hr/>!}
-        {!{#hello testData}!}
-            {!bla bla bla!}
-        {!{/hello}!}
-    {!</div>!}
-{!!}
-    {!{defaultTexte ?: 'var not found'}!}
 
-     <div style="margin-top:30px;">
-         <hr/>
-         <h2>More experiments:</h2>
-         <ul>
-             <li>
+    <div style="margin-top:30px;">
+        <hr/>
+        <h2>More experiments:</h2>
+        <ul>
+            <li>
                 <a href="/hello/reactive">Reactive asynchronous Request/Response</a>
-             </li>
-             <li>
-                 <a href="/hello/blocking">Blocking synchronous Request/Response</a>
-             </li>
-         </ul>
-     </div>
+            </li>
+            <li>
+                <a href="/hello/blocking">Blocking synchronous Request/Response</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div style="margin-top:30px;">
+    {#hello testData}
+        This is a "User-defined Tag" (custom tags) in Qute.
+    {/hello}
+    </div>
+
+    {!{defaultTexte ?: 'var not found'}!}
 
 {/include}
 

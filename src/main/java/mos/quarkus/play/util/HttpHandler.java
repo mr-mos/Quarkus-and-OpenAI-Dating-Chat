@@ -41,6 +41,7 @@ public class HttpHandler {
 		setCookie(key, value, null);
 	}
 
+
 	public String getCookieValue(String key) {
 		Cookie cookie = request.getCookie(key);
 		if (cookie != null) {

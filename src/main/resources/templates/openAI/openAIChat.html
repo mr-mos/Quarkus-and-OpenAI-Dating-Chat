@@ -1,0 +1,70 @@
+{#include layout}
+    {#title}Use OpenAI and ChatGPT{/title}
+    <div class="flex-container">
+    <div class="flexUpperRight">
+        ApiKey: {apiKey ?: 'No API key defined'}
+    </div>
+    <div class="flexFull">
+        <strong style="background-color: #eeeeee">Demo: Chatting with a date partner &#128525;</strong>
+
+        {#if !chatGoal??}
+            <br/><br/>
+            This is a demonstration of how to use ChatGPT via the API. The use case is a very exciting one. Especially if
+            you are single. ;) <br/>
+            Imagine you are chatting with a potential date and don't know what to say. Just paste the chat-text of you
+            partner here and you get your answer pre generated. <br/>
+            Before you start you need to select your dating goal. &#128522;
+        {/if}
+    </div>
+
+    <div class="form">
+
+    {#if chatGoal??}
+
+        <h2>Your dating goal:  <strong>{chatGoal}</strong></h2>
+
+        <h2>Your communication:</h2>
+
+        <form method="post" action="chatting">
+            <label for="otherMessage">Post the last message from your chat partner:</label> <br/>
+            <textarea id="otherMessage" name="otherMessage" rows="10">
+            </textarea>
+            {#if formErrors??}
+                <div style="color:red;margin-top:5px;">
+                {formErrors}
+                </div>
+            {/if}
+            <div>
+                <button type="submit"> Let ChatGPT answer the message above ! </button>
+            </div>
+        </form>
+
+
+        <script>
+            window.onload = function() {
+                document.getElementById("otherMessage").focus();
+            };
+        </script>
+
+    {#else}
+
+        <form method="post" action="chatGoalDefinition">
+            <label for="goal">Your dating goal:</label>
+            <select name="goal" id="goal" required="required">
+                <option value=""></option>
+                <option value="RELATIONSHIP">Relationship</option>
+                <option value="ACTIVITIES">Activities / Leisure Time</option>
+                <option value="SEX">Sex</option>
+            </select>
+            <div>
+                <button type="submit"> Save it ! </button>
+            </div>
+        </form>
+
+    {/if}
+
+
+
+    </div>
+    </div>
+{/include}

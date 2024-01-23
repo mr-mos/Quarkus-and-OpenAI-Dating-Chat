@@ -16,7 +16,7 @@ public class NavigationService {
 				new String[][]{
 						{"Home", "/"},
 						{"Hello World", "/hello"},
-						{"<b>ChatGPT &amp; OpenAI</b>", "/openAI/openAIStart"},
+						{"<b>ChatGPT &amp; OpenAI</b>", "/openAI/openAIChat"},
 						{"Quarkus Info", "/quarkus_default.html"}
 				}
 		);

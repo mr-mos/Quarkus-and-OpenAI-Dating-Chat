@@ -17,35 +17,37 @@ import java.util.UUID;
 public class CachingService {
 
 	public static String USER_SESSION_OPENAPI_KEY = "user_session_openapi_key";
+	public static String USER_SESSION_CHAT_GOAL = "user_session_chat_goal";
+	public static String USER_SESSION_CHAT_LIST = "user_session_chat_list";
 
 	public String createNewSession() {
 		String sessionId = UUID.randomUUID().toString();
-		readWriteUserSessionValue(sessionId, new HashMap<String, String>());
+		readWriteUserSessionValue(sessionId, new HashMap<String, Object>());
 		return sessionId;
 	}
 
-	public void setUserSessionValue(String sessionId, String key, String value) {
+	public <T> void setUserSessionValue(String sessionId, String key, T value) {
 		Log.info("Setting key '"+key+"' for user-session: " + sessionId/* + "with value: "+value*/);
-		Map<String, String> sessionMap = readWriteUserSessionValue(sessionId, null);
+		Map<String, Object> sessionMap = readWriteUserSessionValue(sessionId, null);
 		invalidateUserSession(sessionId);
 		if (sessionMap == null) {
-			sessionMap = readWriteUserSessionValue(sessionId, new HashMap<String, String>());
+			sessionMap = readWriteUserSessionValue(sessionId, new HashMap<>());
 		}
 		sessionMap.put(key, value);
 		readWriteUserSessionValue(sessionId, sessionMap);
 	}
 
-	public String getUserSessionValue(String sessionId, String key) {
-		Map<String, String> sessionMap = readWriteUserSessionValue(sessionId, null);
+	public <T> T getUserSessionValue(String sessionId, String key) {
+		Map<String, Object> sessionMap = readWriteUserSessionValue(sessionId, null);
 		if (sessionMap == null) {
 			return null;
 		}
-		return sessionMap.get(key);
+		return (T) sessionMap.get(key);
 	}
 
 
 	@CacheResult(cacheName = "user-session")
-	protected Map<String,String> readWriteUserSessionValue(@CacheKey String sessionId, Map<String,String> value) {
+	protected Map<String,Object> readWriteUserSessionValue(@CacheKey String sessionId, Map<String,Object> value) {
 		return value;
 	}
 

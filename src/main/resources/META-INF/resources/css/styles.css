@@ -2,131 +2,165 @@
 
 /* Allgemeine Stile */
 body {
-	font-family: Arial, sans-serif;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	margin: 0;
-	padding: 0;
-	background-color: #000033; /* Dunkelblau */
-	color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #000033; /* Dunkelblau */
+    color: #fff;
 }
 
 
 .container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 
 ul {
-	list-style-type: none; /* Entfernt die standardmäßigen Listenpunkte */
-	padding-left: 0;
+    list-style-type: none; /* Entfernt die standardmäßigen Listenpunkte */
+    padding-left: 0;
 }
 
 li {
-	position: relative; /* Erlaubt das Positionieren des :before Pseudo-Elementes relativ zum li-Element */
-	padding-left: 25px; /* Sorgt für den nötigen Platz für das SVG-Logo */
-	margin-bottom: 10px;
+    position: relative; /* Erlaubt das Positionieren des :before Pseudo-Elementes relativ zum li-Element */
+    padding-left: 25px; /* Sorgt für den nötigen Platz für das SVG-Logo */
+    margin-bottom: 10px;
 }
 
 li:before {
-	content: ""; /* Kein Inhalt im Pseudo-Element */
-	position: absolute; /* Positioniert das Pseudo-Element absolut relativ zum li-Element */
-	width: 25px; /* Breite des SVG-Logos */
-	height: 25px; /* Höhe des SVG-Logos */
-	left: 0; /* Positioniert das SVG-Logo am Anfang des li-Elementes */
-	top: 0; /* Positioniert das obere Ende des :before Elementes am oberen Rand des li-Elementes */
-	bottom: 0; /* Positioniert das untere Ende des :before Elementes am unteren Rand des li-Elementes */
-	margin: auto; /* Zentriert das :before Element vertikal */
-	background: url('../img/play-logo.svg') no-repeat; /* Setzt das SVG-Logo als Hintergrundbild */
-	background-size: contain; /* Stellt sicher, dass das gesamte SVG-Logo sichtbar ist */
+    content: ""; /* Kein Inhalt im Pseudo-Element */
+    position: absolute; /* Positioniert das Pseudo-Element absolut relativ zum li-Element */
+    width: 25px; /* Breite des SVG-Logos */
+    height: 25px; /* Höhe des SVG-Logos */
+    left: 0; /* Positioniert das SVG-Logo am Anfang des li-Elementes */
+    top: 0; /* Positioniert das obere Ende des :before Elementes am oberen Rand des li-Elementes */
+    bottom: 0; /* Positioniert das untere Ende des :before Elementes am unteren Rand des li-Elementes */
+    margin: auto; /* Zentriert das :before Element vertikal */
+    background: url('../img/play-logo.svg') no-repeat; /* Setzt das SVG-Logo als Hintergrundbild */
+    background-size: contain; /* Stellt sicher, dass das gesamte SVG-Logo sichtbar ist */
 }
 
 
 /* Header-Bereich */
 header {
-	width: 100%;
-	background-color: #000033;
-	height: 52px; /* beispielhafte feste Höhe */
-	display: flex;
-	align-items: center;
+    width: 100%;
+    background-color: #000033;
+    height: 52px; /* beispielhafte feste Höhe */
+    display: flex;
+    align-items: center;
 }
 
 .logo {
-	width: 100px; /* Ändern Sie die Größe entsprechend Ihrem Logo */
+    width: 100px; /* Ändern Sie die Größe entsprechend Ihrem Logo */
 }
 
 .logo img {
-	width: 80%;
-	height: auto;
+    width: 80%;
+    height: auto;
 }
 
 #quarkus-logo-svg {
-	width: 100px;
-	height: 40px;
-	margin: 10px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
 }
 
 header h1 {
-	color: #fff;
-	font-size: 2em;
+    color: #fff;
+    font-size: 2em;
 }
 
 /* Navigationsbereich */
 nav {
-	background-color: #000033;
-	color: #fff;
-	padding-bottom: 5px;
+    background-color: #000033;
+    color: #fff;
+    padding-bottom: 5px;
 }
 
 nav ul {
-	list-style: none;
-	padding: 0;
-	display: flex;
-	justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
 }
 
 nav ul li {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 nav ul li a {
-	color: #fff;
-	text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 /* Hauptinhalt */
 main {
-	background-color: #fff;
-	color: #000033;
-	padding: 20px;
-	flex-grow: 1; /* Damit nimmt main den verfügbaren Platz ein */
+    background-color: #fff;
+    color: #000033;
+    padding: 20px;
+    flex-grow: 1; /* Damit nimmt main den verfügbaren Platz ein */
 }
 
 .flex-container {
-	display: flex;
-	flex-direction: column; /* Stacks children vertically */
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
 }
 
 .flexUpperRight {
-	text-align: right;
-	font-size: small;
-	color: #888;
+    text-align: right;
+    font-size: small;
+    color: #888;
 }
 
 .flexFull {
-	width: 100%; /* Sets the width to full container width */
-	/* Additional styles like margin, padding, etc. can be added here */
+    width: 100%; /* Sets the width to full container width */
+    /* Additional styles like margin, padding, etc. can be added here */
 }
 
+.form {
+    margin-top: 25px;
+}
+
+.form label {
+    font-size: 14px;
+}
+.form button, .form select {
+    padding: 2px 15px;
+    background-color: #c2eac2;
+    border: black 1px solid;
+    font-size: 14px;
+}
+.form textarea {
+    width: 95%;
+    background-color: #d9efd9;
+    padding: 5px;
+    font-size: 14px;
+    border: black 1px solid;
+}
+.form button:hover, .form select:hover {
+    background-color: #a4bea4;
+}
+
+.form div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form h2  {
+    font-size: 16px;
+    color: #1d4b7e;
+    margin: 5px 0px 20px 0px;
+}
 
 /* Fußzeilenbereich */
 footer {
-	background-color: #000011;
-	color: #fff;
-	padding: 10px;
-	text-align: center;
-	height: 18px; /* beispielhafte feste Höhe */
+    background-color: #000011;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    height: 18px; /* beispielhafte feste Höhe */
 }
