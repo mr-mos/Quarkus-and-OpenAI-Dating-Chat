@@ -20,8 +20,7 @@ import mos.quarkus.play.util.HttpHandler;
 import java.net.URI;
 import java.util.*;
 
-import static mos.quarkus.play.service.CachingService.USER_SESSION_CHAT_GOAL;
-import static mos.quarkus.play.service.CachingService.USER_SESSION_OPENAPI_KEY;
+import static mos.quarkus.play.service.CachingService.*;
 import static mos.quarkus.play.util.HttpHandler.DAY_IN_SECONDS;
 import static mos.quarkus.play.util.HttpHandler.SESSION_COOKIE_NAME;
 
@@ -110,6 +109,7 @@ public class OpenAIController {
         if (otherMessage == null || otherMessage.trim().length() < 5) {
             return generateChatTemplate(Collections.singletonMap("formErrors","Please enter the last message of you chat partner above. Needs to be >= 5 characters!"));
         }
+        storeNewMessage(otherMessage);
         redirect("/openAI/chatting");
         return null;            // should be never reached because of the redirect before
     }
@@ -117,15 +117,23 @@ public class OpenAIController {
 
     //////
 
+    private void storeNewMessage(String otherMessage) {
+        List<String> chatList = getSessionValue(USER_SESSION_CHAT_LIST);
+        if (chatList == null) {
+            chatList = new ArrayList<>();
+        }
+        chatList.add(otherMessage);
+        setSessionValue(USER_SESSION_CHAT_LIST,chatList);
+    }
+
+
     private TemplateInstance generateChatTemplate(Map<String,Object> moreModelValues) {
         String apiKey = checkForApiKey();
         ChatGoal chatGoal = getSessionValue(USER_SESSION_CHAT_GOAL);
-        Map<String, Object> model = new HashMap<>();
-        model.put("apiKey", halfLength(apiKey));
-        model.put("chatGoal", chatGoal.name().toLowerCase());
         TemplateInstance templateInstance = openAIChatTemplate.data(
                 "apiKey", halfLength(apiKey),
-                "chatGoal", chatGoal.name().toLowerCase()
+                "chatGoal", chatGoal.name().toLowerCase(),
+                "chatList", getSessionValue(USER_SESSION_CHAT_LIST)
         );
         if (moreModelValues != null) {
             for (Map.Entry<String, Object> entry : moreModelValues.entrySet()) {

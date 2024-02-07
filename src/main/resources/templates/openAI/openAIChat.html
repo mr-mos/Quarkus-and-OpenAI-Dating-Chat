@@ -25,10 +25,20 @@
 
         <h2>Your communication:</h2>
 
-        <form method="post" action="chatting">
+        {#each chatList}
+            {#set even=it_count.mod(2).equals(0) isLast=it_count.equals(chatList.size())}
+                <div class="{isLast ? "last" : ""}">
+                            <span class="chatEntryLabel">{even ? (isLast ? "Answer with this:" : "You:") : "Chat Partner:" } </span>
+                            <div class="chatEntry {even ? "" : "other" }">
+                                {it}
+                            </div>
+                </div>
+            {/set}
+        {/each}
+
+        <form method="post" action="chatting" style="margin-top: 25px;">
             <label for="otherMessage">Post the last message from your chat partner:</label> <br/>
-            <textarea id="otherMessage" name="otherMessage" rows="10">
-            </textarea>
+            <textarea id="otherMessage" name="otherMessage" rows="10"></textarea>
             {#if formErrors??}
                 <div style="color:red;margin-top:5px;">
                 {formErrors}

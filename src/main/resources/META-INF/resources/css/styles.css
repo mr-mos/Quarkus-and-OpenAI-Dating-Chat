@@ -156,6 +156,29 @@ main {
     margin: 5px 0px 20px 0px;
 }
 
+.form .chatEntry {
+    width: 95%;
+    background-color: #eeeeee;
+    padding: 15px;
+    font-size: 14px;
+    border: black 1px solid;
+    margin-bottom: 15px;
+    margin-top: 0px;
+}
+
+.chatEntry.other {
+    background-color: #ecf5ec;
+}
+
+.chatEntryLabel {
+  font-size: 14px;
+}
+
+.last .chatEntry, .last .chatEntryLabel {
+    font-weight: bold;
+}
+
+
 /* Fußzeilenbereich */
 footer {
     background-color: #000011;
