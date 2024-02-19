@@ -1,8 +1,10 @@
-# code-with-quarkus
+# code with Quarkus and OpenAI
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+
+If you like to learn about OpenAI development check: https://platform.openai.com/docs/overview
 
 ## Running the application in dev mode
 
