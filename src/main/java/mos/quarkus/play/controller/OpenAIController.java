@@ -110,6 +110,8 @@ public class OpenAIController {
             return generateChatTemplate(Collections.singletonMap("formErrors","Please enter the last message of you chat partner above. Needs to be >= 5 characters!"));
         }
         storeNewMessage(otherMessage);
+        String generatedChatGptAnswer = "TODO: Let answer be generated";
+        storeNewMessage(generatedChatGptAnswer);
         redirect("/openAI/chatting");
         return null;            // should be never reached because of the redirect before
     }
@@ -117,23 +119,28 @@ public class OpenAIController {
 
     //////
 
-    private void storeNewMessage(String otherMessage) {
+    private List<String> storeNewMessage(String otherMessage) {
         List<String> chatList = getSessionValue(USER_SESSION_CHAT_LIST);
         if (chatList == null) {
             chatList = new ArrayList<>();
         }
         chatList.add(otherMessage);
         setSessionValue(USER_SESSION_CHAT_LIST,chatList);
+        return chatList;
     }
 
 
     private TemplateInstance generateChatTemplate(Map<String,Object> moreModelValues) {
         String apiKey = checkForApiKey();
         ChatGoal chatGoal = getSessionValue(USER_SESSION_CHAT_GOAL);
+        List<String> chatList = getSessionValue(USER_SESSION_CHAT_LIST);
+        if (chatList == null) {
+            chatList = storeNewMessage("Hey, nice to meet you here. Such a nice profile. :) I look forward to learning more about you. Have you had a good day so far? What would you like to know about me before we pick up the phone or meet? ;)");
+        }
         TemplateInstance templateInstance = openAIChatTemplate.data(
                 "apiKey", halfLength(apiKey),
                 "chatGoal", chatGoal.name().toLowerCase(),
-                "chatList", getSessionValue(USER_SESSION_CHAT_LIST)
+                "chatList", chatList
         );
         if (moreModelValues != null) {
             for (Map.Entry<String, Object> entry : moreModelValues.entrySet()) {

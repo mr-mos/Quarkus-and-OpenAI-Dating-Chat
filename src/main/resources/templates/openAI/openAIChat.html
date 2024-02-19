@@ -25,11 +25,12 @@
 
         <h2>Your communication:</h2>
 
+
         {#each chatList}
-            {#set even=it_count.mod(2).equals(0) isLast=it_count.equals(chatList.size())}
+            {#set even=it_count.mod(2).equals(0) isLast=it_count.equals(chatList.size()) isFirst=it_count.equals(1)}
                 <div class="{isLast ? "last" : ""}">
-                            <span class="chatEntryLabel">{even ? (isLast ? "Answer with this:" : "You:") : "Chat Partner:" } </span>
-                            <div class="chatEntry {even ? "" : "other" }">
+                            <span class="chatEntryLabel">{even ? "Chat Partner:" : (isFirst ? "Start with this:" : (isLast ? "Answer with this:" : "You:"))  } </span>
+                            <div class="chatEntry {even ? "other" : "" }">
                                 {it}
                             </div>
                 </div>
