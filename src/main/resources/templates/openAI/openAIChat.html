@@ -39,7 +39,7 @@
 
         <form method="post" action="chatting" style="margin-top: 25px;">
             <label for="otherMessage">Post the last message from your chat partner:</label> <br/>
-            <textarea id="otherMessage" name="otherMessage" rows="10"></textarea>
+            <textarea id="otherMessage" name="otherMessage" rows="10">{lastMessage??}</textarea>
             {#if formErrors??}
                 <div style="color:red;margin-top:5px;">
                 {formErrors}

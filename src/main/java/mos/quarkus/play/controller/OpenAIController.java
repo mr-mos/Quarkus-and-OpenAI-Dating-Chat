@@ -15,8 +15,10 @@ import jakarta.ws.rs.core.Response;
 import mos.quarkus.play.defs.ChatGoal;
 import mos.quarkus.play.model.ApiKey;
 import mos.quarkus.play.service.CachingService;
+import mos.quarkus.play.service.OpenAIService;
 import mos.quarkus.play.util.HttpHandler;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.*;
 
@@ -28,12 +30,27 @@ import static mos.quarkus.play.util.HttpHandler.SESSION_COOKIE_NAME;
 @Blocking
 public class OpenAIController {
 
+    private final static String SYSTEM_INSTRUCTION = "You are a person in the age between 30 and 50 who is searching for a date. " +
+            "You use are using a chat-app (like in Tinder), to talk to your potential partner. Please respond to his/her chat-messages! " +
+            "Your goal is to convince your chat partner that you are the right partner for %s. " +
+            "You should ask the relevant question regarding your goal by your fourth answer at the latest.";
+
+    private final static Map<ChatGoal, String> SYSTEM_INSTRUCTION_GOAL = Map.of(
+            ChatGoal.SEX, "an affair and casual sex dates",
+            ChatGoal.RELATIONSHIP, "a serious relationship",
+            ChatGoal.ACTIVITIES, "leisure activities and friendship");
+
+    private final static String FIRST_NON_AI_MESSAGE = "Hey, nice to meet you here. Such a nice profile. :) I look forward to learning more about you. Have you had a good day so far? " +
+            "What would you like to know about me before we pick up the phone or meet? ;)";
 
     @Inject
     HttpHandler httpHandler;
 
     @Inject
     CachingService cachingService;
+
+    @Inject
+    OpenAIService openAIService;
 
     @Inject
     @Named("englishValidator")
@@ -106,11 +123,20 @@ public class OpenAIController {
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public TemplateInstance chattingPost(@FormParam("otherMessage") String otherMessage) {
+        String apiKey = checkForApiKey();
         if (otherMessage == null || otherMessage.trim().length() < 5) {
-            return generateChatTemplate(Collections.singletonMap("formErrors","Please enter the last message of you chat partner above. Needs to be >= 5 characters!"));
+            return generateChatTemplate(Collections.singletonMap("formErrors", "Please enter the last message of you chat partner above. Needs to be >= 5 characters!"));
         }
-        storeNewMessage(otherMessage);
-        String generatedChatGptAnswer = "TODO: Let answer be generated";
+        List<String> chatList = storeNewMessage(otherMessage);
+        String instruction = String.format(SYSTEM_INSTRUCTION, SYSTEM_INSTRUCTION_GOAL.get((ChatGoal) getSessionValue(USER_SESSION_CHAT_GOAL)));
+        String generatedChatGptAnswer;
+        try {
+            generatedChatGptAnswer = openAIService.requestDatingChatAnswer(instruction, chatList, apiKey);
+        } catch (IOException e) {
+            Log.error("Error while requesting ChatGPT: ", e);
+            String last = chatList.removeLast();
+            return generateChatTemplate(Map.of("lastMessage", last, "formErrors", "OpenAI API returns with an error: " + e));
+        }
         storeNewMessage(generatedChatGptAnswer);
         redirect("/openAI/chatting");
         return null;            // should be never reached because of the redirect before
@@ -125,17 +151,17 @@ public class OpenAIController {
             chatList = new ArrayList<>();
         }
         chatList.add(otherMessage);
-        setSessionValue(USER_SESSION_CHAT_LIST,chatList);
+        setSessionValue(USER_SESSION_CHAT_LIST, chatList);
         return chatList;
     }
 
 
-    private TemplateInstance generateChatTemplate(Map<String,Object> moreModelValues) {
+    private TemplateInstance generateChatTemplate(Map<String, Object> moreModelValues) {
         String apiKey = checkForApiKey();
         ChatGoal chatGoal = getSessionValue(USER_SESSION_CHAT_GOAL);
         List<String> chatList = getSessionValue(USER_SESSION_CHAT_LIST);
         if (chatList == null) {
-            chatList = storeNewMessage("Hey, nice to meet you here. Such a nice profile. :) I look forward to learning more about you. Have you had a good day so far? What would you like to know about me before we pick up the phone or meet? ;)");
+            chatList = storeNewMessage(FIRST_NON_AI_MESSAGE);
         }
         TemplateInstance templateInstance = openAIChatTemplate.data(
                 "apiKey", halfLength(apiKey),
