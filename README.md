@@ -1,10 +1,20 @@
 # code with Quarkus and OpenAI
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project uses Quarkus, the Supersonic Subatomic Java Framework and Artificial Intelligence by leveraging OpenAI's API (ChatGPT)
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ 
 
 If you like to learn about OpenAI development check: https://platform.openai.com/docs/overview
+
+The application implements a chat-buddy that help's you to interact with a potential dating partner. ;)  
+It looks like this:
+
+![](screenshot.png)
+
+
+**It can be testet here**  (wait a little until the server starts): https://quarkus-play-app.onrender.com/openAI/openAIChat
+
+---
 
 ## Running the application in dev mode
 
